@@ -1,0 +1,30 @@
+---TO DO---
+
+- Pagina individual de pais:
+
+        > Poner id del pais debajo del nombre como un subtitulo.
+        > Population debe ser poblacion, mejorar la legibilidad del numero
+        > Area en km2 o millones de km2
+        > Revisar las actividades turisticas
+ 
+- Configurar eslint y arreglar todo
+
+- Lavado de cara al CSS
+
+- Revisar y correr tests
+
+
+---NICE TO HAVE---
+
+- Pagination, hacerla bien, ver https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
+
+- Agregar pagina de error para rutas no validas
+
+- Crear middleware de manejo de errores (Ver parte 3 de FSO)
+
+- Agregar put request para actualizar actividades
+
+- Agregar delete request para eliminar actividades
+
+- Funcionalidad de home button. Debe regresar a la pagina de inicio al presionarlo con los
+filtros activados.

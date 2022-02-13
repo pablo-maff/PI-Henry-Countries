@@ -1,0 +1,128 @@
+body {
+  height: 100%;
+  background-image: url(https://media0.giphy.com/media/26n6G8lRMOrYC6rFS/giphy.gif?cid=790b761…&rid=giphy.gif&ct=g);
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  padding-top: 10px;
+  background-image: url(https://media0.giphy.com/media/26n6G8lRMOrYC6rFS/giphy.gif?cid=790b761…&rid=giphy.gif&ct=g);
+  background-size: cover;
+  background-color: #000;
+  height: 100%;
+}
+
+p, label, a, div{
+  color:#fff;
+}
+
+a:link, a:visited, a:active, h3, p {
+  text-decoration:none;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+input 				{
+  color:#fff;
+  font-size:18px;
+  text-align: center;
+  padding:10px 10px 10px 5px;
+  margin-bottom: 15px;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #ccc;
+  background-color: #000;
+  padding: 3px;
+}
+
+input:focus 		{ 
+  outline:none; 
+  font-size:16px;
+  border-bottom:1px solid #eee;
+
+}
+
+input.placeholder {
+text-align: center;
+}
+
+select {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  background-color: #000;
+  padding:10px 10px 10px 5px;
+}
+
+select:hover {
+  font-weight: bold;
+}
+
+
+button {
+  font-weight:bold;
+  font-size:1.8rem;
+  color:#fff;
+  width:100%;
+  height:100%;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+} 
+
+button:hover {
+  color:#002;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 40px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+
+}
+
+svg {
+  margin: 3px;
+}
+
+svg:hover {
+  transform: scale(1.5);
+}
+
+
