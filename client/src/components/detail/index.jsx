@@ -73,10 +73,10 @@ const Index = () => {
     `
 
     return (
-        country.hasOwnProperty("cca3") ?
+        country.hasOwnProperty("id") ?
         <> 
         <div id='title'>
-        <h1 >{`${country.cca3} / ${country.name.toUpperCase()}`}</h1>
+        <h1 >{`${country.id} / ${country.name.toUpperCase()}`}</h1>
         <h3>{`Capital: ${country.capital}`}</h3>
         </div>
         
@@ -88,7 +88,7 @@ const Index = () => {
                 Image ={country.flags }
                 Continent={country.continents.join(", ")}
                 Region = {country.subregion}
-                id ={country.cca3} />
+                id ={country.id} />
                 </div>
 
                 <div id ="infography">
@@ -114,7 +114,7 @@ const Index = () => {
                 <div className='activityContainer'>
                 <h2>{a.name.toUpperCase()}</h2>
                  <hr></hr>
-                <h3>{`dificutlty: ${a.difficulty}`}</h3>
+                <h3>{`Difficulty: ${a.difficulty}`}</h3>
                 <div style={{width:"100%", height:"20px", backgroundColor:"#000"}}>
                 <div style={{width:`${a.difficulty * 20}%`, height:"100%", backgroundColor:"#0c0"}}></div>
                 </div>

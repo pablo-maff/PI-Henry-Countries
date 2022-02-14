@@ -133,7 +133,7 @@ const Index = ({ continent, activity, sort, search }) => {
                   Image={c.flags}
                   Name={c.name}
                   Continent={c.continents.join(", ")}
-                  id={c.cca3}
+                  id={c.id}
                 />
               )
             );

@@ -1,6 +1,7 @@
 const activitiesRouter = require("express").Router()
 const axios = require("axios")
 const {Country, Activity, Membership} = require("../models")
+const { sequelize } = require('../utils/db')
 
 // [ ] POST /activity:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
@@ -8,16 +9,21 @@ const {Country, Activity, Membership} = require("../models")
 
 activitiesRouter.post("/activity", async (req, res) => {
     try {
-        const { name, country} = req.body
+        const { name, countries} = req.body
         const activity = await Activity.create(req.body)
 
-        await Membership.create({
-          countryId: country, 
-          activityId: activity.id
-        })
-
-        res.status(200).send(`La actividad ${name} ha sido creada y relacionada a ${country}`)
+        for (const country of countries) {
+          const countryQuery = await Country.findOne({ 
+            where: { name: country }
+          })
+          Membership.create({
+            countryId: countryQuery.id,
+            activityId: activity.id
+          })
+        }
+        res.status(200).send(`La actividad ${name} ha sido creada y relacionada a paises`)
       } catch(error) {
+          console.log(error);
           return res.status(400).json({ error: "Los datos enviados no son válidos" })
       }
     }) 
