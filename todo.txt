@@ -1,5 +1,9 @@
 ---TO DO---
 
+- Al crear una actividad desaperce el listado de paises y no se pueden crear mas!
+
+- Doble renderizado de paises
+
 - Pagina individual de pais:
 
         > Poner id del pais debajo del nombre como un subtitulo.

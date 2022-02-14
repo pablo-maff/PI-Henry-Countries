@@ -13,11 +13,11 @@ activitiesRouter.post("/activity", async (req, res) => {
         const activity = await Activity.create(req.body)
 
         for (const country of countries) {
-          const countryQuery = await Country.findOne({ 
+          const countryObj = await Country.findOne({ 
             where: { name: country }
           })
           Membership.create({
-            countryId: countryQuery.id,
+            countryId: countryObj.id,
             activityId: activity.id
           })
         }

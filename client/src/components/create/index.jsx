@@ -17,36 +17,45 @@ const Index = () => {
   const [state, setState] = useState({
     search: "",
     name: "",
-    difficulty: 0,
+    difficulty: 1,
     duration: 0,
     season: [],
     countries: [],
   });
-
   allCountries = state.search.length
     ? allCountries.filter((c) => c.name.includes(state.search))
     : allCountries;
 
   const handleState = (e) => {
     // seteo el estado, según si la propiedad es un array o un string
-    e.target.id === "season" || e.target.id === "countries"
-      ? !state[e.target.id].includes(e.target.value)
-        ? e.target.value.length &&
+    if (e.target.id === "season" || e.target.id === "countries") {
+      //console.log('Is SEASON or COUNTRIES!');
+      //if (!state[e.target.id].includes(e.target.value)) {
+        //console.log('NotValueInId');
+        //console.log('target & value=', [e.target.id], e.target.value);
+        e.target.value.length &&
           setState({
             ...state,
             [e.target.id]: [...state[e.target.id], e.target.value],
-          })
-        : e.target.value.length &&
-          setState({
-            ...state,
-            [e.target.id]: [
-              ...state[e.target.id].filter(
-                (element) => e.target.value != element
-              ),
-            ],
-          })
-      : e.target.value.length !== 0 &&
+          });
+      //  else {
+      //   console.log('ValueInId');
+      //   e.target.value.length &&
+      //     setState({
+      //       ...state,
+      //       [e.target.id]: [
+      //         ...state[e.target.id].filter(
+      //           (element) => e.target.value != element
+      //         ),
+      //       ],
+      //     });
+      // };
+    } else {
+      //console.log('Not SEASON or COUNTRIES')
+      // Set states when no countries or seasons are selected
+      e.target.value.length !== 0 &&
         setState({ ...state, [e.target.id]: e.target.value });
+    };
   };
 
   return (
@@ -62,12 +71,12 @@ const Index = () => {
             id="name"
             type="text"
             placeholder="name of activity"
-            onChange={(e) => handleState(e)}
+            onChange={handleState}
           />
           {/* renderizado condicional de label para campos obligatorios */}
           <>
             {state.name.length > 2 &&
-            !/[^a-zA-Z0]/.test(state.name.replace(/ /g, "")) ? (
+              !/[^a-zA-Z0]/.test(state.name.replace(/ /g, "")) ? (
               <p style={{ fontSize: ".8rem", margin: 0, color: "#9f9" }}>
                 Great!!!
               </p>
@@ -91,9 +100,9 @@ const Index = () => {
             id="search"
             type="text"
             placeholder="search country where its practiced"
-            onChange={(e) => handleState(e)}
+            onChange={handleState}
           />
-          <select id="countries" onChange={(e) => handleState(e)} multiple>
+          <select id="countries" onChange={handleState} multiple>
             <option value="">Select Countries</option>
             {allCountries.map((c) => (
               <option
@@ -110,52 +119,52 @@ const Index = () => {
           <>
             {/* renderizado condicional de texto para campos obligatorios */}
             {state.countries.length ? (
-              <p style={{ fontSize: ".8rem", margin: "10px", color: "#9f9" }}>
-                Great!!! you have chosen next countries...
+              <div style={{ fontSize: ".8rem", margin: "10px", color: "#9f9" }}>
+                <p>Great!!! you have chosen next countries...</p>
                 {state.countries.map((c) => (
                   <>
-                    <div>
-                      <button
+                    <button
+                      style={{
+                        fontSize: ".8rem",
+                        margin: "10px",
+                        position: "relative",
+                      }}
+                    >
+                      {c}
+                      <span
+                        id={c}
+                        onClick={
+                          (e) => {
+                          setState({
+                            ...state,
+                            countries: [
+                              ...state.countries.filter(
+                                (element) => e.target.id != element
+                              ),
+                            ],
+                          });
+                          return e.preventDefault();
+                        }
+                      }
                         style={{
-                          fontSize: ".8rem",
-                          margin: "10px",
-                          position: "relative",
+                          fontSize: ".9rem",
+                          margin: 0,
+                          color: "#fff",
+                          position: "absolute",
+                          top: "-1px",
+                          right: 0,
+                          padding: `0 3px`,
+                          backgroundColor: "#b00",
+                          borderRadius: "2px",
+                          border: "solid 1px",
                         }}
                       >
-                        {c}
-                        <span
-                          id={c}
-                          onClick={(e) => {
-                            setState({
-                              ...state,
-                              countries: [
-                                ...state.countries.filter(
-                                  (element) => e.target.id != element
-                                ),
-                              ],
-                            });
-                            return e.preventDefault();
-                          }}
-                          style={{
-                            fontSize: ".9rem",
-                            margin: 0,
-                            color: "#fff",
-                            position: "absolute",
-                            top: "-1px",
-                            right: 0,
-                            padding: `0 3px`,
-                            backgroundColor: "#b00",
-                            borderRadius: "2px",
-                            border: "solid 1px",
-                          }}
-                        >
-                          x
-                        </span>
-                      </button>
-                    </div>
+                        x
+                      </span>
+                    </button>
                   </>
                 ))}
-              </p>
+              </div>
             ) : (
               <p style={{ fontSize: ".8rem", margin: "20px", color: "#f99" }}>
                 Choosing one or more countries is required *
@@ -176,10 +185,10 @@ const Index = () => {
           <input
             id="difficulty"
             type="range"
-            min="0"
+            min="1"
             max="5"
             defaultValue="0"
-            onChange={(e) => handleState(e)}
+            onChange={handleState}
           />
         </div>
 
@@ -198,7 +207,7 @@ const Index = () => {
             min="0"
             max="10"
             defaultValue="0"
-            onChange={(e) => handleState(e)}
+            onChange={handleState}
           />
         </div>
 
@@ -206,7 +215,7 @@ const Index = () => {
           <p>station where the activity is practiced</p>
           <select
             id="season"
-            onChange={(e) => handleState(e)}
+            onChange={handleState}
             style={{ marginBottom: "10px", width: "30%" }}
             multiple
           >
@@ -299,8 +308,8 @@ const Index = () => {
         </div>
         <div>
           {state.countries.length &&
-          state.name.length > 2 &&
-          !/[^a-zA-Z0]/.test(state.name.replace(/ /g, "")) ? (
+            state.name.length > 2 &&
+            !/[^a-zA-Z0]/.test(state.name.replace(/ /g, "")) ? (
             // Con el botón se hace post para crear una nueva actividad turística
             // Relacionada a los países elegidos por el usuario
             <button

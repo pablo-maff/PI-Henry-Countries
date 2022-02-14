@@ -125,7 +125,6 @@ const Index = ({ continent, activity, sort, search }) => {
       Imagen de la bandera Nombre Continente  */}
         {allCountries.length ? (
           allCountries.map((c, i) => {
-            console.log('Country.Page=', page);
             return (
               i >= page - 10 &&
               i < page && (
